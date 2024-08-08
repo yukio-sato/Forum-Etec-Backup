@@ -1,0 +1,29 @@
+#drop database db_cadastro;
+create database db_cadastro;
+use db_cadastro;
+
+create table tb_evento(
+	cd_evento int auto_increment not null,
+    nm_evento varchar(45),
+	primary key (cd_evento)
+);
+
+insert into tb_evento 
+values(null,"Teste");
+
+create table tb_pessoa(
+    cpf_pessoa char(14) not null,
+	nm_pessoa varchar(45),
+    email_pessoa varchar(45),
+    id_pessoa char(3) not null,
+    dia_pessoa int,
+    fk_cd_evento int,
+    foreign key (fk_cd_evento) references tb_evento(cd_evento),
+    primary key(cpf_pessoa)
+);
+
+select * from tb_pessoa;
+#utilize drop database em testes para remover os valores, caso contrário você apagará todas as informações do usuário
+#update tb_pessoa set dia_pessoa = 0 where cpf_pessoa = '000.000.000-00'; para atualizar
+#select * from tb_pessoa where cpf_pessoa = '000.000.000-00'; para achar a pessoa
+#select * from tb_pessoa where fk_cd_evento = 0; altere o 0 para o código do evento
